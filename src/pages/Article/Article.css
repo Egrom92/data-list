@@ -1,0 +1,35 @@
+article {
+    width: 100%;
+    max-width: 890px;
+}
+.description p {
+
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+article img {
+    margin-bottom: 30px;
+}
+article p {
+    line-height: 150%;
+    font-size: 24px;
+}
+article .text p {
+    margin-bottom: 30px;
+}
+.tags {
+
+}
+.tag {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #fff;
+    background: #ff57a2;
+    border-radius: 99px;
+}
+.tag:not(:last-child) {
+    margin-right: 10px;
+}
+article:last-child {
+    margin-bottom: 0;
+}

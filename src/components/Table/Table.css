@@ -1,0 +1,31 @@
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+thead {
+
+}
+tr {
+
+}
+th {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    color: #ff57a2;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: left;
+    cursor: pointer;
+}
+i {
+
+}
+tbody {
+
+}
+td {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
