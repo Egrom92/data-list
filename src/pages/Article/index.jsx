@@ -1,36 +1,35 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import './Article.css'
-import {useDispatch, useSelector} from 'react-redux';
-import {load} from '../../store/post';
-import {createMarkup, getImage} from '../../helpers';
+import { useDispatch, useSelector } from 'react-redux';
+import { load } from '../../store/post';
+import HtmlRender from '../../components/HtmlRender'
 
 const Article = (props) => {
-
     const dispatch = useDispatch();
-    const post = useSelector((state) => state.post.post);
+    const { post, loading } = useSelector((state) => state.post);
 
     useEffect(() => {
         dispatch(load());
     }, [dispatch]);
 
-
-    let tags = [];
-
-    if (post.tags) {
-        tags = post.tags
+    if (loading) {
+        return <div className='info-alert'>Loding ...</div>
     }
 
+    if (!post) {
+        return <div className='info-alert'>Something went wrong! Reload the page.</div>
+    }
 
     return (
         <article>
-            <div className="description" dangerouslySetInnerHTML={createMarkup(post.intro)}/>
-            {getImage(post.images)}
-            <div className="text" dangerouslySetInnerHTML={createMarkup(post.body)}/>
+            <HtmlRender className="description">{post.intro}</HtmlRender>
+
+            {post.images.map(({ large, alt, title }) => <img key={alt} src={large} alt={alt} title={title} />)}
+
+            <div className="text" dangerouslySetInnerHTML={{ __html: post.body }} />
 
             <ul className="tags">
-                {tags.map((el, i) => {
-                    return <li key={i} className="tag"> {el} </li>
-                })}
+                {post.tags.map((el, i) => <li key={i} className="tag"> {el} </li>)}
             </ul>
         </article>
     )

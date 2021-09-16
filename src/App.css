@@ -123,3 +123,10 @@ img {
         max-width: 100%;
     }
 }
+.info-alert {
+    max-width: 970px;
+    height: 300px;
+    line-height: 300px;
+    width: 100%;
+    text-align: center;
+}

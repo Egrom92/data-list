@@ -1,48 +1,75 @@
 import { createSlice } from "@reduxjs/toolkit";
 import hc from '../request/hc';
 
-const initialState = {
+const getInitialState = () => ({
   list: [],
-  pageNumber: 1,
+  page: 1,
+  pages: 1,
   limit: 10,
-  numberOfPages: 1,
+  field: null,
+  dir: null,
   loading: false,
-};
+  tableHeaders: [
+    {
+      field: 'firstname',
+      name: 'Eesnimi'
+    },
+    {
+      field: 'surname',
+      name: 'Perekonnanimi'
+    },
+    {
+      field: 'sex',
+      name: 'Sugu'
+    },
+    {
+      field: 'date',
+      name: 'Sünnikuupäev'
+    },
+    {
+      field: 'phone',
+      name: 'Telefon'
+    },
+  ],
+  activeTr: null
+})
 
 export const listSlice = createSlice({
   name: "list",
 
-  initialState,
+  initialState: getInitialState(),
 
   reducers: {
     setState(state, action) {
       Object.assign(state, action.payload);
     },
-    changePageNumber(state, action) {
 
+    turnPage(state, action) {
+      const page = action.payload
+
+      if (1 <= page && page <= state.pages) {
+        state.page = page
+      }
     }
   }
 });
 
-export const setNumberOfPages = (params) => async (dispatch) => {
-  console.log(initialState)
-};
-
-export const load = (params) => async (dispatch) => {
+export const load = (params) => async (dispatch, getState) => {
   dispatch(setState({ loading: true }));
+  const state = getState().list
 
-  const list = await hc.get('/list.json');
-  const numberOfPages = list.list.length / initialState.limit
+  const { list } = await hc.get('/list.json');
+  const pages = Math.ceil(list.length / state.limit)
 
   dispatch(
-      setState({
-        loading: false,
-        list,
-        numberOfPages
-      })
+    setState({
+      loading: false,
+      list,
+      pages
+    })
   );
 };
 
-export const { setState } = listSlice.actions;
+export const { setState, turnPage } = listSlice.actions;
 
 export default listSlice.reducer;

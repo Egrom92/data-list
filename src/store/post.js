@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import hc from '../request/hc'
 
-const initialState = {
-    post: {},
+const getInitialState = () => ({
+    post: null,
     loading: false,
-};
+})
 
 export const postSlice = createSlice({
     name: "post",
 
-    initialState,
+    initialState: getInitialState(),
 
     reducers: {
         setState(state, action) {

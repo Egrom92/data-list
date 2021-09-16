@@ -1,17 +1,3 @@
-import React from 'react';
-
-export const createMarkup = (string) => {
-    if (string) {
-        return {
-            __html: string
-        };
-    }
-};
-export const getImage = (arr) => {
-    if (arr) {
-      return <img src={arr[0].large} alt={arr[0].alt} title={arr[0].title}/>
-    }
-};
 export const getDateValue = (dateValue) => {
     if (dateValue) {
         const date = new Date(dateValue);

@@ -29,3 +29,36 @@ td {
     padding: 10px;
     border-bottom: 1px solid #ccc;
 }
+tr {
+
+}
+tr.tr-head {
+
+}
+tr.tr-head.active td{
+    background: #ff57a2;
+    color: #fff;
+    font-weight: 700;
+}
+tr.tr-body {
+    display: none;
+}
+tr.tr-body.active {
+    display: table-row;
+}
+tr.tr-body td {
+
+}
+tr.tr-body td > div {
+    display: flex;
+}
+tr.tr-body img {
+    width: 180px;
+    height: 120px;
+    margin-right: 20px;
+    object-fit: cover;
+}
+tr.tr-body p {
+    font-size: 16px;
+    line-height: 150%;
+}

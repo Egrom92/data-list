@@ -20,6 +20,11 @@
     color: #fff;
     font-size: 16px;
     box-shadow: none;
+    cursor: pointer;
+}
+.pagination__direction.disabled {
+    cursor: auto;
+    opacity: .4;
 }
 .pagination__direction.fas {
 
